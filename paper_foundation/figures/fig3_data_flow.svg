@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="7.16in" height="5.890in" viewBox="0 0 620 510">
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#222"/></marker></defs>
+<rect width="620" height="510" fill="white"/>
+<rect x="15" y="18" width="175" height="46" rx="4" fill="white" stroke="#222" stroke-width="1.2"/>
+<text x="102.5" y="38.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">User / Streamlit session</text>
+<text x="102.5" y="53.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">Source + rewritten text</text>
+<rect x="230" y="18" width="175" height="46" rx="4" fill="white" stroke="#222" stroke-width="1.2"/>
+<text x="317.5" y="38.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">P1: Extract claims</text>
+<text x="317.5" y="53.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">and evidence profiles</text>
+<polyline points="190,41 230,41" fill="none" stroke="#222" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="194.25" y="21" width="31.5" height="13" fill="white"/>
+<text x="210" y="31" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#111">texts</text>
+<rect x="450" y="18" width="155" height="46" rx="4" fill="white" stroke="#222" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="527.5" y="38.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">External LLM API</text>
+<text x="527.5" y="53.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">Optional HTTP / JSON</text>
+<polyline points="405,29 450,29" fill="none" stroke="#222" stroke-width="1.2" marker-end="url(#arrow)" stroke-dasharray="4 3"/>
+<rect x="407.7" y="8" width="36.599999999999994" height="13" fill="white"/>
+<text x="426" y="18" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#111">prompt</text>
+<polyline points="450,53 405,53" fill="none" stroke="#222" stroke-width="1.2" marker-end="url(#arrow)" stroke-dasharray="4 3"/>
+<rect x="414.8" y="67" width="26.4" height="13" fill="white"/>
+<text x="428" y="77" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#111">JSON</text>
+<rect x="238" y="112" width="160" height="48" rx="0" fill="white" stroke="#222" stroke-width="1.2"/>
+<path d="M238,117 H398 M238,155 H398" stroke="#222" fill="none"/>
+<text x="318.0" y="133.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">D1: Profile JSON cache</text>
+<text x="318.0" y="148.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">SHA-256(model + text)</text>
+<polyline points="290,64 290,112" fill="none" stroke="#222" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="208.3" y="84" width="77.39999999999999" height="13" fill="white"/>
+<text x="247" y="94" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#111">lookup / write</text>
+<polyline points="347,112 347,64" fill="none" stroke="#222" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="353.3" y="86" width="77.39999999999999" height="13" fill="white"/>
+<text x="392" y="96" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#111">cached profile</text>
+<rect x="15" y="213" width="175" height="58" rx="4" fill="white" stroke="#222" stroke-width="1.2"/>
+<text x="102.5" y="232.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">P2: Embed and align</text>
+<text x="102.5" y="247.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">Claim texts -&gt; vectors</text>
+<text x="102.5" y="262.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">Primary-source selection</text>
+<polyline points="230,53 210,53 210,190 102,190 102,213" fill="none" stroke="#222" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="86.65" y="166" width="92.69999999999999" height="13" fill="white"/>
+<text x="133" y="176" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#111">claims + profiles</text>
+<rect x="230" y="213" width="175" height="58" rx="4" fill="white" stroke="#222" stroke-width="1.2"/>
+<text x="317.5" y="232.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">P3: Difference + NLI</text>
+<text x="317.5" y="247.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">Profiles -&gt; signed shifts</text>
+<text x="317.5" y="262.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">Text pair -&gt; NLI scores</text>
+<polyline points="190,242 230,242" fill="none" stroke="#222" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="196.8" y="221" width="26.4" height="13" fill="white"/>
+<text x="210" y="231" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#111">pair</text>
+<rect x="450" y="213" width="155" height="58" rx="4" fill="white" stroke="#222" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="527.5" y="232.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">Model dependencies</text>
+<text x="527.5" y="247.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">MiniLM embeddings</text>
+<text x="527.5" y="262.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">BART NLI in Streamlit</text>
+<polyline points="450,232 405,232" fill="none" stroke="#222" stroke-width="1.2" marker-end="url(#arrow)" stroke-dasharray="4 3"/>
+<rect x="416.35" y="212" width="21.299999999999997" height="13" fill="white"/>
+<text x="427" y="222" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#111">NLI</text>
+<polyline points="450,258 426,258 426,300 102,300 102,271" fill="none" stroke="#222" stroke-width="1.2" marker-end="url(#arrow)" stroke-dasharray="4 3"/>
+<rect x="178.75" y="285" width="82.5" height="13" fill="white"/>
+<text x="220" y="295" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#111">embedding model</text>
+<rect x="230" y="334" width="175" height="48" rx="4" fill="white" stroke="#222" stroke-width="1.2"/>
+<text x="317.5" y="355.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">P4: Feature generation</text>
+<text x="317.5" y="370.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">and research classification</text>
+<polyline points="317,271 317,334" fill="none" stroke="#222" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="240.05" y="308" width="153.89999999999998" height="13" fill="white"/>
+<text x="317" y="318" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#111">deltas + NLI + match metadata</text>
+<rect x="230" y="427" width="175" height="48" rx="4" fill="white" stroke="#222" stroke-width="1.2"/>
+<text x="317.5" y="448.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">Result objects</text>
+<text x="317.5" y="463.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">Session state + display</text>
+<polyline points="317,382 317,427" fill="none" stroke="#222" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="250.25" y="402" width="133.5" height="13" fill="white"/>
+<text x="317" y="412" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#111">labels / shifts / reasons</text>
+<text x="310" y="499" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#111">Double-line rectangles: data store. Dashed: conditional external dependency. No results database is implemented.</text>
+</svg>

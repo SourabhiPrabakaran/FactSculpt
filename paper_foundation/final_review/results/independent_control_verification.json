@@ -1,0 +1,17 @@
+{
+  "scalar_handcoded": {
+    "macro_f1": 0.30766358211407613,
+    "accuracy": 0.5399644760213144,
+    "coverage": 1.0
+  },
+  "scalar_ordinal": {
+    "macro_f1": 0.3723551143578172,
+    "accuracy": 0.4920071047957371,
+    "coverage": 1.0
+  },
+  "repair_execution": {
+    "completed": 563,
+    "changed": 32,
+    "quality_not_measured": true
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "scalar_handcoded": {
+    "n": 563,
+    "macro_f1": 0.30766358211407613,
+    "accuracy": 0.5399644760213144,
+    "coverage": 1.0,
+    "recalls": {
+      "downplays": 0.03125,
+      "same": 0.8289855072463768,
+      "exaggerates": 0.12295081967213115
+    },
+    "prediction_sha256": "14e1e6c95bbba1d7c283fc1ec9762605d603f74ce53226c3281ea5259446124d"
+  },
+  "scalar_ordinal": {
+    "n": 563,
+    "macro_f1": 0.3723551143578172,
+    "accuracy": 0.4920071047957371,
+    "coverage": 1.0,
+    "recalls": {
+      "downplays": 0.14583333333333334,
+      "same": 0.6492753623188405,
+      "exaggerates": 0.319672131147541
+    },
+    "prediction_sha256": "faa84cbd90f8a9c92ee75628fa3f0c00bc2973429d14bd3577380cb0e8750779"
+  },
+  "repair_execution": {
+    "attempted": 563,
+    "completed": 563,
+    "errors": [],
+    "changed": 32,
+    "unchanged": 531,
+    "stop_reasons": {
+      "already_safe": 522,
+      "verified_safe": 28,
+      "max_iterations_reached": 13
+    },
+    "source_copy_differs_from_initial": 563,
+    "source_copy_control": "Returns source verbatim; removes the rewrite objective and is not a quality gold label",
+    "prediction_sha256": "25221aa05a647e8671ccf51488f6f7151de1b67cabf3a9c90cdec7cafda25581",
+    "quality_metrics": "NOT MEASURED: independent fidelity, residual exaggeration, fluency, unsupported modifications"
+  },
+  "protocol": {
+    "source_files_verified": 61,
+    "new_working_copy": "<LOCAL_HOME>\\Downloads\\FactSculpt_minimal\\audit_workspace\\final_review\\FactSculpt",
+    "test_n": 563,
+    "test_sha256": "41429cc76860e56b96791be8478c2eb831e19e5d605b529c626b5327f2ed7f0a",
+    "fresh_vectors_matching_saved": 1126,
+    "scalar_weights": {
+      "role": 0.25,
+      "qualifier": 0.15,
+      "scope": 0.2,
+      "certainty": 0.15,
+      "impact": 0.15,
+      "quantity": 0.1
+    },
+    "component_gate": 0.05,
+    "scalar_dead_zone": 0.05,
+    "test_tuning": false,
+    "selection": "Controls designed after earlier test results were known; exploratory, not preregistered",
+    "model_backend": "No neural inference or external API",
+    "human_annotations": "Not available in supplied evidence; none generated as human gold",
+    "predecessor_reproduction": false
+  }
+}

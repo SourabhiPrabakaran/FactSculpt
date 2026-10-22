@@ -1,0 +1,200 @@
+{
+  "provenance": "NEW source-generated synthetic records, not recovered historical files or human gold. Class labels and shifts are generator assertions.",
+  "splits": {
+    "train": {
+      "count": 2520,
+      "clusters": 840,
+      "distinct_sources": 840,
+      "classes": {
+        "C1": 840,
+        "C3": 840,
+        "C5": 278,
+        "C4": 298,
+        "C2": 264
+      },
+      "domains": {
+        "professional": 1260,
+        "scientific": 630,
+        "product_claims": 630
+      },
+      "directions": {
+        "missing": 2520
+      },
+      "sha256": "df69a7848256a4a543958cdf993887e75c61c556d64d9fff9f2b7e4659a869a8",
+      "readme_hash_prefix": "06fbe863dd47",
+      "prefix_matches": false,
+      "lf_normalized_sha256": "a81cb53dd22c92752ba64db9e2e0e9950a62c792d3edaa28cfdf93eafc6cd542"
+    },
+    "val": {
+      "count": 540,
+      "clusters": 180,
+      "distinct_sources": 180,
+      "classes": {
+        "C1": 180,
+        "C3": 180,
+        "C5": 57,
+        "C2": 60,
+        "C4": 63
+      },
+      "domains": {
+        "professional": 270,
+        "scientific": 135,
+        "product_claims": 135
+      },
+      "directions": {
+        "missing": 540
+      },
+      "sha256": "171f54688513df06f0db5b938f1a46258223459a6eeaf24d3029dffd5e32ab29",
+      "readme_hash_prefix": "feda90525667",
+      "prefix_matches": false,
+      "lf_normalized_sha256": "80cfce5634cc80ce9f2d92a8b65feea3ea6115e84197def2e3c7495d83a3d2a2"
+    },
+    "frozen_test": {
+      "count": 540,
+      "clusters": 180,
+      "distinct_sources": 180,
+      "classes": {
+        "C1": 180,
+        "C3": 180,
+        "C5": 59,
+        "C2": 56,
+        "C4": 65
+      },
+      "domains": {
+        "professional": 270,
+        "scientific": 135,
+        "product_claims": 135
+      },
+      "directions": {
+        "missing": 540
+      },
+      "sha256": "9bdf7c20408ae8f77a8754e2f2d7b370891a0fea4a68f993f84394bb0a757db3",
+      "readme_hash_prefix": "9dd24d178534",
+      "prefix_matches": false,
+      "lf_normalized_sha256": "3a52aacc506de79288a541718abec0255ae6a1255e15fcc2fa46bda61cceb7a7"
+    },
+    "minimal_pairs": {
+      "count": 1260,
+      "clusters": 0,
+      "distinct_sources": 1260,
+      "classes": {
+        "C3": 426,
+        "C2": 426,
+        "C1": 408
+      },
+      "domains": {
+        "missing": 1260
+      },
+      "directions": {
+        "strengthen": 426,
+        "weaken": 426,
+        "control": 408
+      },
+      "sha256": "cbff3beeb1e577e9dd1c7102d1171522e39ddf1e9eea23414967ab43ccc8be9a",
+      "readme_hash_prefix": "cbff3beeb1e5",
+      "prefix_matches": true,
+      "lf_normalized_sha256": "0e4b2c80d6670718667ee81692ce131ac45c8577ee05b2dd9919f1eb87565001"
+    },
+    "hard_cases": {
+      "count": 10,
+      "clusters": 0,
+      "distinct_sources": 10,
+      "classes": {
+        "missing": 10
+      },
+      "domains": {
+        "missing": 10
+      },
+      "directions": {
+        "missing": 10
+      },
+      "sha256": "e0f3a224b72b9cd4d01c50fdd8d4d16a2d3599d24bf3d72bcdd0b57d434ecbd4",
+      "readme_hash_prefix": "e0f3a224b72b",
+      "prefix_matches": true,
+      "lf_normalized_sha256": "9bcddd47c0f9d8b633bbe8a06421d62afaacefc71fd823846a33ecb51f5d0d08"
+    }
+  },
+  "overlap": {
+    "train__val": {
+      "shared_cluster_ids": 0,
+      "shared_exact_sources": 0,
+      "shared_character_5grams": 2548,
+      "sample_shared_5grams": [
+        " 10 c",
+        " 12 a",
+        " 15 s",
+        " 18 m",
+        " 20 c",
+        " 3 en",
+        " 3 sm",
+        " 4 se",
+        " 5 mi",
+        " 6 ba",
+        " 8 da",
+        " a ba",
+        " a co",
+        " a cu",
+        " a da",
+        " a di",
+        " a gr",
+        " a lo",
+        " a mi",
+        " a po"
+      ]
+    },
+    "train__frozen_test": {
+      "shared_cluster_ids": 0,
+      "shared_exact_sources": 0,
+      "shared_character_5grams": 2520,
+      "sample_shared_5grams": [
+        " 10 c",
+        " 12 a",
+        " 15 s",
+        " 18 m",
+        " 20 c",
+        " 3 en",
+        " 3 sm",
+        " 4 se",
+        " 5 mi",
+        " 6 ba",
+        " 8 da",
+        " a ba",
+        " a co",
+        " a da",
+        " a di",
+        " a gr",
+        " a lo",
+        " a mi",
+        " a po",
+        " a re"
+      ]
+    },
+    "val__frozen_test": {
+      "shared_cluster_ids": 0,
+      "shared_exact_sources": 0,
+      "shared_character_5grams": 2461,
+      "sample_shared_5grams": [
+        " 10 c",
+        " 12 a",
+        " 15 s",
+        " 18 m",
+        " 20 c",
+        " 3 en",
+        " 3 sm",
+        " 4 se",
+        " 5 mi",
+        " 6 ba",
+        " 8 da",
+        " a ba",
+        " a co",
+        " a da",
+        " a di",
+        " a gr",
+        " a lo",
+        " a mi",
+        " a po",
+        " a re"
+      ]
+    }
+  }
+}

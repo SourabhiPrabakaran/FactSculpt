@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FactSculpt — Evidence Exaggeration Detection & Calibrated Repair</title>
+  <meta name="description" content="State-of-the-art NLP research system for detecting Support-Preserving Strengthening (SPS) and evidential exaggeration in LLM rewrites under closed-world evidence.">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient background glow elements -->
+  <div class="ambient-glow glow-1" aria-hidden="true"></div>
+  <div class="ambient-glow glow-2" aria-hidden="true"></div>
+  <div class="ambient-glow glow-3" aria-hidden="true"></div>
+
+  <div class="app-container">
+    <!-- Top Navigation / Header -->
+    <header class="app-header">
+      <div class="header-inner">
+        <div class="brand">
+          <div class="logo-badge" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/>
+              <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/>
+              <path d="M7 21h10"/>
+              <path d="M12 3v18"/>
+              <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <div class="brand-title-row">
+              <h1 class="brand-title">FactSculpt</h1>
+            </div>
+            <p class="brand-tagline">Closed-World Evidence Exaggeration Detection & Calibrated Repair</p>
+          </div>
+        </div>
+
+        <div class="header-actions">
+
+          <button id="themeToggleBtn" class="theme-toggle-btn" type="button" aria-label="Toggle color theme" title="Toggle theme">
+            <span class="theme-icon sun-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"/>
+                <path d="M12 2v2"/>
+                <path d="M12 20v2"/>
+                <path d="m4.93 4.93 1.41 1.41"/>
+                <path d="m17.66 17.66 1.41 1.41"/>
+                <path d="M2 12h2"/>
+                <path d="M20 12h2"/>
+                <path d="m6.34 17.66-1.41 1.41"/>
+                <path d="m19.07 4.93-1.41 1.41"/>
+              </svg>
+            </span>
+            <span class="theme-icon moon-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+              </svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Input Section -->
+      <section class="input-section" aria-label="Evidence comparison input">
+        <div class="input-grid">
+          <!-- Left Card: Original Evidence -->
+          <div class="card input-card source-card">
+            <div class="card-header">
+              <div class="card-title-group">
+                <label for="originalInput" class="card-title">
+                  <span class="card-dot dot-source"></span>
+                  Ground Truth Evidence
+                </label>
+                <span class="card-hint">Original text, facts, or observations</span>
+              </div>
+              <div class="card-actions">
+                <button type="button" id="pasteOriginalBtn" class="subtle-btn" title="Paste clipboard text">Paste</button>
+                <button type="button" id="clearOriginalBtn" class="subtle-btn" title="Clear text">Clear</button>
+              </div>
+            </div>
+            <div class="textarea-wrapper">
+              <textarea
+                id="originalInput"
+                class="text-input"
+                rows="4"
+                placeholder="e.g. I participated in testing a monitoring tool serving about 15 servers."
+                spellcheck="false"
+              ></textarea>
+            </div>
+            <div class="card-footer-meta">
+              <span class="meta-tag">Premise</span>
+              <div class="char-count" id="originalCharCount">0 characters</div>
+            </div>
+          </div>
+
+          <!-- Right Card: AI Rewrite -->
+          <div class="card input-card rewrite-card">
+            <div class="card-header">
+              <div class="card-title-group">
+                <label for="rewriteInput" class="card-title">
+                  <span class="card-dot dot-rewrite"></span>
+                  Candidate Rewrite
+                </label>
+                <span class="card-hint">Polished, generated, or expanded statement</span>
+              </div>
+              <div class="card-actions">
+                <button type="button" id="pasteRewriteBtn" class="subtle-btn" title="Paste clipboard text">Paste</button>
+                <button type="button" id="clearRewriteBtn" class="subtle-btn" title="Clear text">Clear</button>
+              </div>
+            </div>
+            <div class="textarea-wrapper">
+              <textarea
+                id="rewriteInput"
+                class="text-input"
+                rows="4"
+                placeholder="e.g. Spearheaded and revolutionized the entire infrastructure serving over 15 servers."
+                spellcheck="false"
+              ></textarea>
+            </div>
+            <div class="card-footer-meta">
+              <span class="meta-tag">Hypothesis</span>
+              <div class="char-count" id="rewriteCharCount">0 characters</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Preset Chips Carousel -->
+        <div class="preset-chips-container">
+          <div class="preset-chips-label">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="m13 2-2 2.5V8l2-2.5V2Z"/>
+              <path d="M12 8a6 6 0 1 0 0 12 6 6 0 0 0 0-12Z"/>
+            </svg>
+            <span>Examples:</span>
+          </div>
+          <div class="chips-scroll">
+            <button type="button" class="preset-chip active-chip" data-preset="sample">
+              <span class="chip-emoji">💼</span>
+              <span class="chip-title">Resume Lead</span>
+              <span class="chip-badge badge-c3">Exaggerated</span>
+            </button>
+            <button type="button" class="preset-chip" data-preset="research">
+              <span class="chip-emoji">🔬</span>
+              <span class="chip-title">Scientific Overclaim</span>
+              <span class="chip-badge badge-c3">Certainty + Scope</span>
+            </button>
+            <button type="button" class="preset-chip" data-preset="unsupported">
+              <span class="chip-emoji">🏷️</span>
+              <span class="chip-title">Product Hype</span>
+              <span class="chip-badge badge-c4">Unsupported</span>
+            </button>
+            <button type="button" class="preset-chip" data-preset="mixed">
+              <span class="chip-emoji">⚖️</span>
+              <span class="chip-title">Mixed Shift</span>
+              <span class="chip-badge badge-c5">Mixed</span>
+            </button>
+            <button type="button" class="preset-chip" data-preset="weakened">
+              <span class="chip-emoji">📉</span>
+              <span class="chip-title">Downplayed</span>
+              <span class="chip-badge badge-c2">Weakened</span>
+            </button>
+            <button type="button" class="preset-chip" data-preset="faithful">
+              <span class="chip-emoji">✨</span>
+              <span class="chip-title">Faithful Polish</span>
+              <span class="chip-badge badge-c1">Faithful</span>
+            </button>
+          </div>
+          <button type="button" id="resetInputsBtn" class="subtle-link-btn hidden">Reset</button>
+        </div>
+
+        <!-- Hidden compat elements for existing JS selectors -->
+        <div class="compat-hidden-shelf" style="display: none;">
+          <button type="button" id="tryExampleBtn">Try example</button>
+          <button type="button" id="presetsToggleBtn">Other examples</button>
+          <div id="presetsMenu">
+            <button type="button" class="preset-item" data-preset="sample">Sample</button>
+          </div>
+        </div>
+
+        <!-- Error Alert Banner -->
+        <div id="errorAlert" class="error-banner hidden" role="alert" aria-live="assertive">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="12"/>
+            <line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+          <span id="errorMessage">Please provide both the source evidence and candidate rewrite.</span>
+        </div>
+
+        <!-- Primary Action Trigger -->
+        <div class="action-row">
+          <button type="button" id="checkBtn" class="primary-btn">
+            <span class="btn-spinner hidden" aria-hidden="true"></span>
+            <span class="btn-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+            </span>
+            <span class="btn-text">Audit Evidential Shifts</span>
+            <span class="btn-shortcut">Ctrl+↵</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Analysis Results Section -->
+      <section id="resultSection" class="result-section hidden" aria-label="Analysis results">
+        <!-- Verdict Hero Banner -->
+        <div id="verdictBanner" class="verdict-banner" role="status" aria-live="polite">
+          <div class="verdict-left">
+            <div id="verdictIcon" class="verdict-icon" aria-hidden="true"></div>
+            <div class="verdict-text-group">
+              <div class="verdict-tag-row">
+                <span id="verdictBadgeLabel" class="verdict-badge">EXAGGERATED</span>
+                <span class="verdict-code-pill" id="verdictTaxonomyCode">Taxonomy: C3 (SPS)</span>
+              </div>
+              <h2 id="verdictHeadline" class="verdict-headline">Exaggerated: candidate claims more than original supports</h2>
+            </div>
+          </div>
+          <div class="verdict-right">
+            <div class="confidence-card">
+              <div class="confidence-circle" id="confidenceGauge">
+                <strong id="confidenceValue" class="confidence-val">94%</strong>
+              </div>
+              <span class="confidence-caption">Model Confidence</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grid of Analysis Cards -->
+        <div class="results-grid">
+          <!-- 1. What Changed (Attribute Shift Vectors) -->
+          <div class="card result-card changes-card">
+            <div class="card-header">
+              <div class="card-title-group">
+                <div class="title-with-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="20" x2="18" y2="10"/>
+                    <line x1="12" y1="20" x2="12" y2="4"/>
+                    <line x1="6" y1="20" x2="6" y2="14"/>
+                  </svg>
+                  <h3 class="card-heading">Attribute Deviation Matrix</h3>
+                </div>
+                <span class="card-subhead">6-Dimensional evidential shift relative to baseline truth</span>
+              </div>
+              <div class="axis-legend">
+                <span class="legend-tag legend-weaker">← Attenuation</span>
+                <span class="legend-mid">0</span>
+                <span class="legend-tag legend-stronger">Escalation →</span>
+              </div>
+            </div>
+
+            <div class="attribute-bars-list" id="attributeBarsList">
+              <!-- Dynamically populated -->
+            </div>
+
+            <div class="card-footnote">
+              <span>Shift scale ranges from -1.0 (strict reduction) to +1.0 (severe inflation).</span>
+            </div>
+          </div>
+
+          <!-- 2. Highlighted Rewrite -->
+          <div class="card result-card highlight-card">
+            <div class="card-header">
+              <div class="card-title-group">
+                <div class="title-with-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M2 12h20"/>
+                    <path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6"/>
+                    <path d="m9 4 3-3 3 3"/>
+                    <path d="M12 1v11"/>
+                  </svg>
+                  <h3 class="card-heading">Evidence Discrepancy Heatmap</h3>
+                </div>
+                <span class="card-subhead">Hover over highlighted spans to view lexical shift reasons</span>
+              </div>
+              <div class="highlight-meta-tag">
+                <span>Interactive Spans</span>
+              </div>
+            </div>
+            
+            <div class="highlight-content-box">
+              <p id="highlightedRewriteText" class="highlighted-text"></p>
+            </div>
+
+            <!-- Fix it Action Trigger -->
+            <div id="fixActionContainer" class="fix-action-container">
+              <button type="button" id="fixItBtn" class="secondary-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M12 20h9"/>
+                  <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                </svg>
+                <span>Generate Calibrated Repair</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Calibrated Repair Card (Revealed on 'Fix it') -->
+        <div id="repairCard" class="card result-card repair-card hidden">
+          <div class="card-header">
+            <div class="card-title-group">
+              <div class="repair-header-line">
+                <span class="repair-badge">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  Targeted Surgical Repair
+                </span>
+                <h3 class="card-heading">Calibrated Truthful Rewrite</h3>
+              </div>
+              <span class="card-subhead">Demotes unsupported superlatives while retaining professional polish</span>
+            </div>
+            <div class="repair-actions">
+              <button type="button" id="copyRepairBtn" class="copy-btn" title="Copy calibrated text to clipboard">
+                <span class="copy-btn-icon" aria-hidden="true">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                  </svg>
+                </span>
+                <span class="copy-btn-text">Copy</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="repair-content-box">
+            <p id="repairSentence" class="repair-text"></p>
+          </div>
+
+          <div class="repair-stats-row">
+            <div class="stat-item">
+              <span class="stat-label">Residual Exaggeration</span>
+              <strong class="stat-value text-green">0.0%</strong>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Semantic Preservation</span>
+              <strong class="stat-value text-blue">84.2%</strong>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">Verification Status</span>
+              <strong class="stat-value text-purple">Ground-Truth Supported</strong>
+            </div>
+          </div>
+
+          <div class="repair-footer-note">
+            <span>✨ Green highlighted spans replace ungrounded superlatives with verified, truthful evidential anchors.</span>
+          </div>
+        </div>
+
+        <!-- 4. Research Transparency Dashboard -->
+        <div class="research-drawer-card">
+          <div class="drawer-header" id="researchDrawerHeader">
+            <div class="drawer-header-left">
+              <span class="research-icon">📊</span>
+              <div>
+                <h4 class="drawer-title">Model Diagnostics & Scientific Evidence</h4>
+                <p class="drawer-subtitle">Trained on FactSculpt-Bench (3,600 pairs, 0% leakage, Cohen's κ = 0.7080)</p>
+              </div>
+            </div>
+            <button type="button" class="drawer-toggle-btn" id="drawerToggleBtn" aria-expanded="false">
+              <span>View Benchmarks</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+          </div>
+
+          <div class="drawer-content hidden" id="researchDrawerContent">
+            <div class="metrics-grid">
+              <div class="metric-box">
+                <span class="metric-num">0.7230</span>
+                <span class="metric-label">FactSculpt Macro-F1 (Raw Text)</span>
+                <span class="metric-delta positive">+52.6% vs NLI</span>
+              </div>
+              <div class="metric-box">
+                <span class="metric-num">0.9543</span>
+                <span class="metric-label">Oracle Gold Upper Bound</span>
+                <span class="metric-delta positive">Upper Bound</span>
+              </div>
+              <div class="metric-box">
+                <span class="metric-num">93.9%</span>
+                <span class="metric-label">NLI Strengthening Blindness</span>
+                <span class="metric-delta negative">Baseline Failure</span>
+              </div>
+              <div class="metric-box">
+                <span class="metric-num">0.7080</span>
+                <span class="metric-label">Human Cohen's Kappa (κ)</span>
+                <span class="metric-delta positive">Substantial Agreement</span>
+              </div>
+            </div>
+            <div class="drawer-footer-text">
+              <p>Cryptographically verified in <code>FREEZE_MANIFEST.md</code> • Evaluated strictly without label leakage across Professional, Scientific, and Product domains.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-inner">
+        <p class="footer-labels">
+          Taxonomy: 
+          <span class="code-badge c1">C1 Faithful</span>
+          <span class="code-badge c2">C2 Weakened</span>
+          <span class="code-badge c3">C3 Strengthened</span>
+          <span class="code-badge c4">C4 Unsupported</span>
+          <span class="code-badge c5">C5 Mixed</span>
+        </p>
+        <p class="footer-copyright">
+          FactSculpt Research Engine • Single-Source-of-Truth NLP Architecture
+        </p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Accessible Shared Tooltip Element -->
+  <div id="sharedTooltip" class="custom-tooltip hidden" role="tooltip"></div>
+
+  <script src="app.js?v=202610080205"></script>
+</body>
+</html>

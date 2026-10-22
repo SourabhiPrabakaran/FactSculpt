@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3.5in" height="5.736in" viewBox="0 0 360 590">
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#222"/></marker></defs>
+<rect width="360" height="590" fill="white"/>
+<rect x="65" y="12" width="230" height="44" rx="4" fill="white" stroke="#222" stroke-width="1.2"/>
+<text x="180.0" y="38.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">Source evidence + rewritten text</text>
+<rect x="65" y="86" width="230" height="48" rx="4" fill="white" stroke="#222" stroke-width="1.2"/>
+<text x="180.0" y="107.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">Streamlit application</text>
+<text x="180.0" y="122.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">app.py: get_pipeline / analyze</text>
+<polyline points="180,56 180,86" fill="none" stroke="#222" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="40" y="164" width="280" height="60" rx="4" fill="white" stroke="#222" stroke-width="1.2"/>
+<text x="180.0" y="191.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">Claim extraction + evidence profiles</text>
+<text x="180.0" y="206.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">LLM when configured; offline fallbacks</text>
+<polyline points="180,134 180,164" fill="none" stroke="#222" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="40" y="254" width="280" height="48" rx="4" fill="white" stroke="#222" stroke-width="1.2"/>
+<text x="180.0" y="275.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">Embedding claim alignment</text>
+<text x="180.0" y="290.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">Primary source selected per rewrite claim</text>
+<polyline points="180,224 180,254" fill="none" stroke="#222" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="15" y="337" width="158" height="60" rx="4" fill="white" stroke="#222" stroke-width="1.2"/>
+<text x="94.0" y="364.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">Attribute differencing</text>
+<text x="94.0" y="379.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">Seed-fitted ordinal scales</text>
+<rect x="193" y="337" width="152" height="60" rx="4" fill="white" stroke="#222" stroke-width="1.2"/>
+<text x="269.0" y="364.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">NLI pair scoring</text>
+<text x="269.0" y="379.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">Model or mock fallback</text>
+<polyline points="180,302 180,320 94,320 94,337" fill="none" stroke="#222" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="180,320 269,320 269,337" fill="none" stroke="#222" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="40" y="432" width="280" height="48" rx="4" fill="white" stroke="#222" stroke-width="1.2"/>
+<text x="180.0" y="453.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">Evidence features + research rules</text>
+<text x="180.0" y="468.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">C1-C5, signed shifts, severity, reasons</text>
+<polyline points="94,397 94,416 140,416 140,432" fill="none" stroke="#222" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="269,397 269,416 220,416 220,432" fill="none" stroke="#222" stroke-width="1.2" marker-end="url(#arrow)"/>
+<rect x="40" y="511" width="280" height="44" rx="4" fill="white" stroke="#222" stroke-width="1.2"/>
+<text x="180.0" y="537.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111">Structured result + Streamlit display</text>
+<polyline points="180,480 180,511" fill="none" stroke="#222" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="180" y="575" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="10" fill="#111">Streamlit path shown; repair is detailed in Fig. 4.</text>
+</svg>

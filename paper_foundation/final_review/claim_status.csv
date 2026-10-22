@@ -1,0 +1,15 @@
+﻿claim,status,evidence,qualification_or_closure,severity
+Implemented six signed facets and research-rule decisions,Verified implementation; scientific validity qualified,Source engine/scales/rules; equations 1–4,Independent annotated construct/utility study missing,High
+0.3612 is full-system performance,Rejected wording; restricted to ordinal transfer adapter,563 saved predictions; independent recomputation,"Whole-conclusion adapter, neutral placeholder and causal labels",High
+Scalar controls 0.3077/0.3724 Macro-F1,Verified exploratory result,New saved outputs and independent_control_verification.json,"Post hoc, uncalibrated decoder comparison; no significance claim",Medium
+Vector decisions improve transfer or explanations,Not supported,Scalar controls exceed corresponding adapter point estimates,Independent six-facet/mixed-case and explanation judgments needed,High
+MiniLM AUROC .5081 indicates general NLI failure,Rejected generalization; task-specific verified result,Genuine pinned predictions; 218 directional pairs,One checkpoint and chosen score only,High
+142/426 strengthened synthetic variants pass .65,Verified diagnostic,Saved genuine neural outputs,"Generator labels and repeated templates, not human validation",Medium
+"563 repair executions, 32 changed outputs",Verified mechanical observation,repair_execution.jsonl,"Not fidelity, fluency or residual-exaggeration rates",Medium
+Repair is independently reliable,Unresolved; not asserted,No human/validated independent quality ratings,Collect blinded source/original/edit judgments and actual baselines,High
+Independent six-facet annotations or agreement exist,Unresolved; not asserted,No supplied independent ratings; forms are blank,Recruit independent annotators and adjudicate; freeze policy,Critical for central empirical claim
+Closest-predecessor matched performance is established,Unresolved; not asserted,Code repository recovered and inventory pinned,Recover/reimplement BERT-SL plus strength classifier and matched protocol,High
+Historical README results are reproduced,Unresolved and excluded,269-entry metric registry; hash follow-up,Original data/full hashes/checkpoints/predictions absent,High
+15 audit tests and six offline groups validate the application,Qualified; isolated checks only,Completed audit records; fresh test outcome reported separately,Does not validate Streamlit/BART/live extraction end to end,Medium
+All 19 references and citations are consistent,Verified metadata and citation mapping,Fresh publisher exports and documented primary fallbacks,Older full text access limited; no unsupported performance comparisons,Low
+Document is venue-certified and ready to submit,Not asserted,Standard IEEE layout; ICSC official rules checked,"Authors, rights, anonymity, PDF checks and research gates pending",High

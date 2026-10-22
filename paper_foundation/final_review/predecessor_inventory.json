@@ -1,0 +1,125 @@
+{
+  "readme": "# Exaggeration_Identification\n\nCODE FOR THE PAPER: A Simple Three-Step Approach for the Automatic Detection of Exaggerated Statements in Health Science News\nVENUE: EACL 2021 \n",
+  "tree": [
+    {
+      "path": "Dev.csv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "485ba0311a4eb2288f37107068bbe942f43cd2d5",
+      "size": 40819,
+      "url": "https://api.github.com/repos/jasabanta1992/Exaggeration_Identification/git/blobs/485ba0311a4eb2288f37107068bbe942f43cd2d5"
+    },
+    {
+      "path": "ModificationToLSTM-CRF",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "defdb1373c7a160f9d3c7090907459ee4a723d1f",
+      "url": "https://api.github.com/repos/jasabanta1992/Exaggeration_Identification/git/trees/defdb1373c7a160f9d3c7090907459ee4a723d1f"
+    },
+    {
+      "path": "ModificationToLSTM-CRF/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "14c9ea7654f166c7d9c7e18d5ca191596e41fb66",
+      "size": 785,
+      "url": "https://api.github.com/repos/jasabanta1992/Exaggeration_Identification/git/blobs/14c9ea7654f166c7d9c7e18d5ca191596e41fb66"
+    },
+    {
+      "path": "ModificationToLSTM-CRF/model2.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "350649964545da7ec90712c2a1c63516de17e224",
+      "size": 19971,
+      "url": "https://api.github.com/repos/jasabanta1992/Exaggeration_Identification/git/blobs/350649964545da7ec90712c2a1c63516de17e224"
+    },
+    {
+      "path": "ModificationToLSTM-CRF/nn2.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1db9deaccc330fc99971074f48fdf93f9b5a6dc3",
+      "size": 10136,
+      "url": "https://api.github.com/repos/jasabanta1992/Exaggeration_Identification/git/blobs/1db9deaccc330fc99971074f48fdf93f9b5a6dc3"
+    },
+    {
+      "path": "ModificationToLSTM-CRF/tagger2.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "df429b5a1d7f6edcfacb709f90258ed6456068e6",
+      "size": 3481,
+      "url": "https://api.github.com/repos/jasabanta1992/Exaggeration_Identification/git/blobs/df429b5a1d7f6edcfacb709f90258ed6456068e6"
+    },
+    {
+      "path": "ModificationToLSTM-CRF/train2.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3a525ba8bb32b3bc67e0cc35545942ef2fa62367",
+      "size": 9949,
+      "url": "https://api.github.com/repos/jasabanta1992/Exaggeration_Identification/git/blobs/3a525ba8bb32b3bc67e0cc35545942ef2fa62367"
+    },
+    {
+      "path": "ModificationToLSTM-CRF/utils2.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "7ca3c3c7e3a0a45fcd80c9b4552a1f3dd11baa9f",
+      "size": 10912,
+      "url": "https://api.github.com/repos/jasabanta1992/Exaggeration_Identification/git/blobs/7ca3c3c7e3a0a45fcd80c9b4552a1f3dd11baa9f"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "187857899a9c54ddf331cb292c158f354efa4348",
+      "size": 175,
+      "url": "https://api.github.com/repos/jasabanta1992/Exaggeration_Identification/git/blobs/187857899a9c54ddf331cb292c158f354efa4348"
+    },
+    {
+      "path": "SeqLabeling",
+      "mode": "040000",
+      "type": "tree",
+      "sha": "9dd4ed4c9f261cd71ab5702dae34ede370deac39",
+      "url": "https://api.github.com/repos/jasabanta1992/Exaggeration_Identification/git/trees/9dd4ed4c9f261cd71ab5702dae34ede370deac39"
+    },
+    {
+      "path": "SeqLabeling/dev.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d8673aa64cb7905a8360f756d6077cda032f6af2",
+      "size": 59615,
+      "url": "https://api.github.com/repos/jasabanta1992/Exaggeration_Identification/git/blobs/d8673aa64cb7905a8360f756d6077cda032f6af2"
+    },
+    {
+      "path": "SeqLabeling/test.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "45c68ffd6d31a71cd065f88bd4cdb9b7dffefcd2",
+      "size": 58845,
+      "url": "https://api.github.com/repos/jasabanta1992/Exaggeration_Identification/git/blobs/45c68ffd6d31a71cd065f88bd4cdb9b7dffefcd2"
+    },
+    {
+      "path": "SeqLabeling/train.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "77bd77eaf51349cf7a90c3ba3d2cbb57465ca56b",
+      "size": 222674,
+      "url": "https://api.github.com/repos/jasabanta1992/Exaggeration_Identification/git/blobs/77bd77eaf51349cf7a90c3ba3d2cbb57465ca56b"
+    },
+    {
+      "path": "test.csv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "36ec7b59b2cfca0a8dfaaaa1156154801390a726",
+      "size": 40639,
+      "url": "https://api.github.com/repos/jasabanta1992/Exaggeration_Identification/git/blobs/36ec7b59b2cfca0a8dfaaaa1156154801390a726"
+    },
+    {
+      "path": "train.csv",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3ea873e58480f9443aaad82eeea1f20f7947813a",
+      "size": 148819,
+      "url": "https://api.github.com/repos/jasabanta1992/Exaggeration_Identification/git/blobs/3ea873e58480f9443aaad82eeea1f20f7947813a"
+    }
+  ],
+  "commit": "4dc566b813879867d9570fdf591704a2358ba691",
+  "code_link": "https://bit.ly/39crP39"
+}
