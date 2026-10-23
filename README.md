@@ -8,16 +8,36 @@ The original implementation is under `FactSculpt/`. Additional audit and evaluat
 
 This is a prototype release, not a demonstrated state-of-the-art system. CLI, Streamlit and repair use different backend paths. Heuristic pseudo-NLI scores are not genuine neural predictions. Historical README performance and license badges are not validated; the old text is retained only in `docs/HISTORICAL_README_UNVERIFIED.md`.
 
-## Run the application
+## Run the browser demonstration
 
-Use Python 3.12 and a fresh virtual environment. Install `FactSculpt/requirements.txt`, then from this repository root run:
+The user-facing browser demonstration is `FactSculpt/web/index.html`. Start a static server from the repository root (Python 3 is sufficient; no Streamlit installation is needed for this interface):
+
+```text
+python -m http.server 8080 --bind 127.0.0.1 --directory FactSculpt/web
+```
+
+Open http://localhost:8080/index.html . Stop the server with Ctrl+C. You may also open `FactSculpt/web/index.html` directly, but clipboard access can depend on browser permissions. If port 8080 is in use, select a free port and change the URL accordingly. This is a static local server, not a Python inference API.
+
+Paste text or use Upload / drag and drop on either input. File pickers advertise `.txt`, `.md`, `.json`, `.csv`, and `.text`. Non-JSON formats are read as text; CSV is not parsed into a dataset. The page takes the first file per selection/drop, not a batch. A JSON object can populate both fields using `source` / `original` / `premise` and `enhanced` / `rewrite` / `hypothesis`. For arrays, only the first entry is considered and only source/original and enhanced/rewrite aliases are implemented. Invalid or unmatched JSON falls back to plain text. There is no PDF/DOCX parser; renaming a document to `.txt` does not convert it. Read failures display an error. No explicit file-size limit is enforced, so use small text files.
+
+Example paired JSON:
+
+```json
+{"source":"The pilot suggests a reduction.","rewrite":"The study proves a universal reduction."}
+```
+
+The JavaScript FileReader reads the selected content in the browser. The reviewed code contains no inference fetch/API call; analysis uses presets and keyword heuristics, separately from the Python system. The page requests Google Fonts, so opening it may still make external font requests. Heuristic scores and suggested edits are not calibrated probabilities or independently verified repair-quality measurements. No browser performance or six-facet human-validation claim follows from the upload feature.
+
+## Optional Python application and paper experiments
+
+The original Streamlit application remains a separate Python entry point. If you specifically want that interface, use Python 3.12 and an isolated environment:
 
 ```text
 python -m pip install -r FactSculpt/requirements.txt
 python -m streamlit run FactSculpt/app.py
 ```
 
-Application requirements use ranges; paper experiments use the separate recorded locks. Neural backends may download third-party models. Review configuration and backend provenance before interpreting outputs. Credentials, if needed, must be supplied locally through environment variables and never committed.
+Opening `index.html` does not invoke this pipeline. Application requirements use ranges; paper experiments use recorded locks and the scripts in `REPRODUCE_RELEASE.md`. Neural backends may download third-party models and may have fallback behavior; inspect provenance before interpreting their outputs. Supply any credentials locally through environment variables and never commit them.
 
 ## Verified component evaluation
 

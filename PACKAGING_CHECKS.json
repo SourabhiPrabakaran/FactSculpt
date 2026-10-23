@@ -531,5 +531,22 @@
       "path": "paper_foundation/figures/fig4_repair_loop.svg",
       "source_sha256": "d80e70e02e7225723ce07d601fa3a4df5145733b2f3a445946e1ba60ea1df082"
     }
-  ]
+  ],
+  "browser_update": {
+    "date": "2026-10-23",
+    "original_application_source_modified": false,
+    "python_experiments_rerun": false,
+    "ui_labels_qualified": true,
+    "current_source_web_sha256": {
+      "app.js": "814ef6e230928f5fcfc8d15c10637fc6801c86ea2ce3c6ded732c2bcadb74532",
+      "index.html": "fe21906f3090589ff4401621f64bf81bdcc23e54de17b2d93207c6a16ceeb4d6",
+      "style.css": "5836842fab317c5be278ca958557a0a4ed2b8161354e46cb6ade7558102f1bb1"
+    },
+    "packaged_web_sha256": {
+      "app.js": "814ef6e230928f5fcfc8d15c10637fc6801c86ea2ce3c6ded732c2bcadb74532",
+      "index.html": "37348ea60df4b91766b8c1e28fcafdd37450177f3a8c15ea1658fa663ef7d02a",
+      "style.css": "5836842fab317c5be278ca958557a0a4ed2b8161354e46cb6ade7558102f1bb1"
+    },
+    "release_instruction": "Publish new v1.1-paper; preserve v1.0-paper."
+  }
 }

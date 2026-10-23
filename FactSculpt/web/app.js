@@ -244,6 +244,13 @@ const clearOriginalBtn = document.getElementById("clearOriginalBtn");
 const clearRewriteBtn = document.getElementById("clearRewriteBtn");
 const resetInputsBtn = document.getElementById("resetInputsBtn");
 
+const uploadOriginalFile = document.getElementById("uploadOriginalFile");
+const uploadRewriteFile = document.getElementById("uploadRewriteFile");
+const originalFileBadge = document.getElementById("originalFileBadge");
+const rewriteFileBadge = document.getElementById("rewriteFileBadge");
+const sourceWrapper = document.getElementById("sourceWrapper");
+const rewriteWrapper = document.getElementById("rewriteWrapper");
+
 const pasteOriginalBtn = document.getElementById("pasteOriginalBtn");
 const pasteRewriteBtn = document.getElementById("pasteRewriteBtn");
 const presetChips = document.querySelectorAll(".preset-chip");
@@ -340,6 +347,8 @@ function setupEventListeners() {
   if (clearOriginalBtn) {
     clearOriginalBtn.addEventListener("click", () => {
       originalInput.value = "";
+      if (originalFileBadge) originalFileBadge.classList.add("hidden");
+      if (uploadOriginalFile) uploadOriginalFile.value = "";
       updateCharCounts();
       originalInput.focus();
     });
@@ -348,10 +357,105 @@ function setupEventListeners() {
   if (clearRewriteBtn) {
     clearRewriteBtn.addEventListener("click", () => {
       rewriteInput.value = "";
+      if (rewriteFileBadge) rewriteFileBadge.classList.add("hidden");
+      if (uploadRewriteFile) uploadRewriteFile.value = "";
       updateCharCounts();
       rewriteInput.focus();
     });
   }
+
+  // File Upload Handlers
+  function processFileUpload(file, targetInput, targetBadge) {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const content = e.target.result;
+      if (file.name.endsWith(".json")) {
+        try {
+          const parsed = JSON.parse(content);
+          const src = parsed.source || parsed.original || parsed.premise || (Array.isArray(parsed) && (parsed[0]?.source || parsed[0]?.original));
+          const rew = parsed.enhanced || parsed.rewrite || parsed.hypothesis || (Array.isArray(parsed) && (parsed[0]?.enhanced || parsed[0]?.rewrite));
+          if (src && rew) {
+            originalInput.value = src;
+            rewriteInput.value = rew;
+            if (originalFileBadge) {
+              originalFileBadge.textContent = `📄 ${file.name} (pair)`;
+              originalFileBadge.classList.remove("hidden");
+            }
+            if (rewriteFileBadge) {
+              rewriteFileBadge.textContent = `📄 ${file.name} (pair)`;
+              rewriteFileBadge.classList.remove("hidden");
+            }
+            updateCharCounts();
+            clearError();
+            hideResults();
+            return;
+          }
+        } catch (err) {
+          // Fall back to plain text
+        }
+      }
+      targetInput.value = content.trim();
+      if (targetBadge) {
+        targetBadge.textContent = `📄 ${file.name}`;
+        targetBadge.classList.remove("hidden");
+      }
+      updateCharCounts();
+      clearError();
+      hideResults();
+    };
+    reader.onerror = () => {
+      showError(`Could not read file: ${file.name}`);
+    };
+    reader.readAsText(file);
+  }
+
+  if (uploadOriginalFile) {
+    uploadOriginalFile.addEventListener("change", (e) => {
+      if (e.target.files && e.target.files[0]) {
+        processFileUpload(e.target.files[0], originalInput, originalFileBadge);
+      }
+    });
+  }
+
+  if (uploadRewriteFile) {
+    uploadRewriteFile.addEventListener("change", (e) => {
+      if (e.target.files && e.target.files[0]) {
+        processFileUpload(e.target.files[0], rewriteInput, rewriteFileBadge);
+      }
+    });
+  }
+
+  // Drag and Drop Support
+  function setupDragAndDrop(wrapper, inputElem, badgeElem) {
+    if (!wrapper || !inputElem) return;
+    ['dragenter', 'dragover'].forEach(eventName => {
+      wrapper.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        wrapper.classList.add('is-dragover');
+      }, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      wrapper.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        wrapper.classList.remove('is-dragover');
+      }, false);
+    });
+
+    wrapper.addEventListener('drop', (e) => {
+      const dt = e.dataTransfer;
+      const files = dt.files;
+      if (files && files.length > 0) {
+        processFileUpload(files[0], inputElem, badgeElem);
+      }
+    }, false);
+  }
+
+  setupDragAndDrop(sourceWrapper, originalInput, originalFileBadge);
+  setupDragAndDrop(rewriteWrapper, rewriteInput, rewriteFileBadge);
 
   // Paste Action Buttons
   if (pasteOriginalBtn) {
@@ -398,6 +502,10 @@ function setupEventListeners() {
     resetInputsBtn.addEventListener("click", () => {
       originalInput.value = "";
       rewriteInput.value = "";
+      if (originalFileBadge) originalFileBadge.classList.add("hidden");
+      if (rewriteFileBadge) rewriteFileBadge.classList.add("hidden");
+      if (uploadOriginalFile) uploadOriginalFile.value = "";
+      if (uploadRewriteFile) uploadRewriteFile.value = "";
       updateCharCounts();
       clearError();
       hideResults();

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FactSculpt — Evidence Exaggeration Detection & Calibrated Repair</title>
-  <meta name="description" content="State-of-the-art NLP research system for detecting Support-Preserving Strengthening (SPS) and evidential exaggeration in LLM rewrites under closed-world evidence.">
+  <title>FactSculpt — Evidence Shift Browser Demonstration</title>
+  <meta name="description" content="Browser demonstration of evidence shifts using text-file input, presets and JavaScript heuristics; separate from the Python research pipeline.">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
@@ -37,7 +37,7 @@
             <div class="brand-title-row">
               <h1 class="brand-title">FactSculpt</h1>
             </div>
-            <p class="brand-tagline">Closed-World Evidence Exaggeration Detection & Calibrated Repair</p>
+            <p class="brand-tagline">Evidence Shift Browser Demonstration</p>
           </div>
         </div>
 
@@ -83,21 +83,33 @@
                 <span class="card-hint">Original text, facts, or observations</span>
               </div>
               <div class="card-actions">
+                <input type="file" id="uploadOriginalFile" accept=".txt,.md,.json,.csv,.text" class="hidden-file-input" style="display:none;" />
+                <label for="uploadOriginalFile" class="subtle-btn upload-trigger-btn" title="Upload file (.txt, .md, .json, .csv)">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="17 8 12 3 7 8"/>
+                    <line x1="12" y1="3" x2="12" y2="15"/>
+                  </svg>
+                  <span>Upload</span>
+                </label>
                 <button type="button" id="pasteOriginalBtn" class="subtle-btn" title="Paste clipboard text">Paste</button>
                 <button type="button" id="clearOriginalBtn" class="subtle-btn" title="Clear text">Clear</button>
               </div>
             </div>
-            <div class="textarea-wrapper">
+            <div class="textarea-wrapper" id="sourceWrapper">
               <textarea
                 id="originalInput"
                 class="text-input"
                 rows="4"
-                placeholder="e.g. I participated in testing a monitoring tool serving about 15 servers."
+                placeholder="e.g. I participated in testing a monitoring tool serving about 15 servers (or upload / drop file here)."
                 spellcheck="false"
               ></textarea>
             </div>
             <div class="card-footer-meta">
-              <span class="meta-tag">Premise</span>
+              <div class="meta-left">
+                <span class="meta-tag">Premise</span>
+                <span class="meta-file-badge hidden" id="originalFileBadge"></span>
+              </div>
               <div class="char-count" id="originalCharCount">0 characters</div>
             </div>
           </div>
@@ -113,21 +125,33 @@
                 <span class="card-hint">Polished, generated, or expanded statement</span>
               </div>
               <div class="card-actions">
+                <input type="file" id="uploadRewriteFile" accept=".txt,.md,.json,.csv,.text" class="hidden-file-input" style="display:none;" />
+                <label for="uploadRewriteFile" class="subtle-btn upload-trigger-btn" title="Upload file (.txt, .md, .json, .csv)">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="17 8 12 3 7 8"/>
+                    <line x1="12" y1="3" x2="12" y2="15"/>
+                  </svg>
+                  <span>Upload</span>
+                </label>
                 <button type="button" id="pasteRewriteBtn" class="subtle-btn" title="Paste clipboard text">Paste</button>
                 <button type="button" id="clearRewriteBtn" class="subtle-btn" title="Clear text">Clear</button>
               </div>
             </div>
-            <div class="textarea-wrapper">
+            <div class="textarea-wrapper" id="rewriteWrapper">
               <textarea
                 id="rewriteInput"
                 class="text-input"
                 rows="4"
-                placeholder="e.g. Spearheaded and revolutionized the entire infrastructure serving over 15 servers."
+                placeholder="e.g. Spearheaded and revolutionized the entire infrastructure serving over 15 servers (or upload / drop file here)."
                 spellcheck="false"
               ></textarea>
             </div>
             <div class="card-footer-meta">
-              <span class="meta-tag">Hypothesis</span>
+              <div class="meta-left">
+                <span class="meta-tag">Hypothesis</span>
+                <span class="meta-file-badge hidden" id="rewriteFileBadge"></span>
+              </div>
               <div class="char-count" id="rewriteCharCount">0 characters</div>
             </div>
           </div>
@@ -231,7 +255,7 @@
               <div class="confidence-circle" id="confidenceGauge">
                 <strong id="confidenceValue" class="confidence-val">94%</strong>
               </div>
-              <span class="confidence-caption">Model Confidence</span>
+              <span class="confidence-caption">Heuristic score (uncalibrated)</span>
             </div>
           </div>
         </div>
@@ -299,7 +323,7 @@
                   <path d="M12 20h9"/>
                   <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
                 </svg>
-                <span>Generate Calibrated Repair</span>
+                <span>Generate Demo Rewrite</span>
               </button>
             </div>
           </div>
@@ -316,7 +340,7 @@
                   </svg>
                   Targeted Surgical Repair
                 </span>
-                <h3 class="card-heading">Calibrated Truthful Rewrite</h3>
+                <h3 class="card-heading">Suggested Demo Rewrite</h3>
               </div>
               <span class="card-subhead">Demotes unsupported superlatives while retaining professional polish</span>
             </div>
@@ -340,20 +364,20 @@
           <div class="repair-stats-row">
             <div class="stat-item">
               <span class="stat-label">Residual Exaggeration</span>
-              <strong class="stat-value text-green">0.0%</strong>
+              <strong class="stat-value text-green">Not measured</strong>
             </div>
             <div class="stat-item">
               <span class="stat-label">Semantic Preservation</span>
-              <strong class="stat-value text-blue">84.2%</strong>
+              <strong class="stat-value text-blue">Not measured</strong>
             </div>
             <div class="stat-item">
               <span class="stat-label">Verification Status</span>
-              <strong class="stat-value text-purple">Ground-Truth Supported</strong>
+              <strong class="stat-value text-purple">Not independently verified</strong>
             </div>
           </div>
 
           <div class="repair-footer-note">
-            <span>✨ Green highlighted spans replace ungrounded superlatives with verified, truthful evidential anchors.</span>
+            <span>Highlighted spans are suggested heuristic edits. Check source support and meaning independently.</span>
           </div>
         </div>
 
@@ -363,12 +387,12 @@
             <div class="drawer-header-left">
               <span class="research-icon">📊</span>
               <div>
-                <h4 class="drawer-title">Model Diagnostics & Scientific Evidence</h4>
-                <p class="drawer-subtitle">Trained on FactSculpt-Bench (3,600 pairs, 0% leakage, Cohen's κ = 0.7080)</p>
+                <h4 class="drawer-title">Demonstration and Evaluation Boundaries</h4>
+                <p class="drawer-subtitle">This page uses presets and local heuristics; its outputs are not measured model performance.</p>
               </div>
             </div>
             <button type="button" class="drawer-toggle-btn" id="drawerToggleBtn" aria-expanded="false">
-              <span>View Benchmarks</span>
+              <span>View Limitations</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="m6 9 6 6 6-6"/>
               </svg>
@@ -378,28 +402,28 @@
           <div class="drawer-content hidden" id="researchDrawerContent">
             <div class="metrics-grid">
               <div class="metric-box">
-                <span class="metric-num">0.7230</span>
-                <span class="metric-label">FactSculpt Macro-F1 (Raw Text)</span>
-                <span class="metric-delta positive">+52.6% vs NLI</span>
+                <span class="metric-num">Heuristic</span>
+                <span class="metric-label">Browser analysis</span>
+                <span class="metric-delta positive">No validated improvement claim</span>
               </div>
               <div class="metric-box">
-                <span class="metric-num">0.9543</span>
-                <span class="metric-label">Oracle Gold Upper Bound</span>
-                <span class="metric-delta positive">Upper Bound</span>
+                <span class="metric-num">Separate</span>
+                <span class="metric-label">Python evaluation</span>
+                <span class="metric-delta positive">See repository results</span>
               </div>
               <div class="metric-box">
-                <span class="metric-num">93.9%</span>
-                <span class="metric-label">NLI Strengthening Blindness</span>
-                <span class="metric-delta negative">Baseline Failure</span>
+                <span class="metric-num">Not run</span>
+                <span class="metric-label">Neural NLI in this page</span>
+                <span class="metric-delta negative">No backend connection</span>
               </div>
               <div class="metric-box">
-                <span class="metric-num">0.7080</span>
-                <span class="metric-label">Human Cohen's Kappa (κ)</span>
-                <span class="metric-delta positive">Substantial Agreement</span>
+                <span class="metric-num">Missing</span>
+                <span class="metric-label">Independent human labels</span>
+                <span class="metric-delta positive">Annotation study pending</span>
               </div>
             </div>
             <div class="drawer-footer-text">
-              <p>Cryptographically verified in <code>FREEZE_MANIFEST.md</code> • Evaluated strictly without label leakage across Professional, Scientific, and Product domains.</p>
+              <p>See the repository README for verified component results and limitations. This browser page is not the evaluated Python pipeline.</p>
             </div>
           </div>
         </div>
@@ -427,6 +451,6 @@
   <!-- Accessible Shared Tooltip Element -->
   <div id="sharedTooltip" class="custom-tooltip hidden" role="tooltip"></div>
 
-  <script src="app.js?v=202610080205"></script>
+  <script src="app.js?v=20261023-upload-docs"></script>
 </body>
 </html>

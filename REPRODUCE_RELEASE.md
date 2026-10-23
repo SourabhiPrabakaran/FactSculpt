@@ -1,4 +1,6 @@
-# Reproducing this release
+# Reproducing the Python experiments
+
+For the user-facing browser demonstration, follow the static-server instructions in the root README. Uploading a file to the browser does not execute these experiments.
 
 The package preserves the original project-relative layout. It is a small source-and-derived-results release, not an environment or model distribution. Original audit notes describe the historical machine; `<LOCAL_HOME>` redactions are not executable paths. Use your own Python 3.12 interpreter.
 
